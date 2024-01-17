@@ -4,7 +4,7 @@ from typing import List
 
 from sqlalchemy.orm import Session
 
-from .. import schemas, models
+from .. import schemas, models, oauth2
 from ..database import get_db
 
 router = APIRouter(
@@ -22,7 +22,7 @@ def get_notes(db: Session = Depends(get_db)):
 
 
 @router.post("/", response_model=schemas.NoteOut)
-def create_note(note: schemas.NoteIn, db: Session = Depends(get_db)):
+def create_note(note: schemas.NoteIn, db: Session = Depends(get_db), current_user: int = Depends(oauth2.get_current_user)):
 
     new_note = models.Note(**note.dict())
 

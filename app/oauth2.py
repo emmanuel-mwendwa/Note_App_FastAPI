@@ -9,7 +9,7 @@ from sqlalchemy.orm import Session
 
 from .config import settings
 
-from .. import schemas, database, models
+from . import schemas, database, models
 
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl='login')
