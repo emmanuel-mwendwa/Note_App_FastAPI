@@ -22,7 +22,7 @@ def get_notes(db: Session = Depends(get_db)):
 
 
 @router.post("/", response_model=schemas.NoteOut)
-def create_note(note: schemas.NoteOut, db: Session = Depends(get_db)):
+def create_note(note: schemas.NoteIn, db: Session = Depends(get_db)):
 
     new_note = models.Note(**note.dict())
 
@@ -66,7 +66,7 @@ def delete_note(id: int, db: Session = Depends(get_db)):
 
 
 @router.put("/{id}", response_model=schemas.NoteOut)
-def update_note(id:int, updated_note: schemas.NoteOut, db: Session = Depends(get_db)):
+def update_note(id:int, updated_note: schemas.NoteIn, db: Session = Depends(get_db)):
     
     note_query = db.query(models.Note).filter(models.Note.id == id)
 
