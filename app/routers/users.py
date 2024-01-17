@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from typing import List
 
-from .. import schemas, models
+from .. import schemas, models, utils
 from ..database import get_db
 
 
@@ -16,6 +16,10 @@ router = APIRouter(
 
 @router.post("/", response_model=schemas.UserOut)
 def create_user(user: schemas.UserIn, db: Session = Depends(get_db)):
+
+    hashed_password = utils.hash(user.password)
+
+    user.password = hashed_password
 
     new_user = models.User(**user.dict())
 

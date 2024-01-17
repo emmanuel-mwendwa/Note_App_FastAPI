@@ -17,7 +17,7 @@ class UserIn(BaseModel):
     password: str
 
 
-class UserOut(UserIn):
-
+class UserOut(BaseModel):
+    email: EmailStr
     created_at: datetime
 
