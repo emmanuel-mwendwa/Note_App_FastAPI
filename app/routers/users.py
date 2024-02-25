@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 
 from typing import List
 
-from .. import schemas, models, utils
+from .. import schemas, models, utils, oauth2
 from ..database import get_db
 
 
